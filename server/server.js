@@ -107,6 +107,25 @@ app.patch('/todos/:id', (req,res) => {
 
 })
 
+
+app.post('/users', (req,res) => {
+    console.log(req.body)
+    
+    var body = _.pick(req.body, ['name','email', 'password'])
+
+    var user = new User(body)
+
+    user.save().then((doc) => {
+        console.log('user sucessfully saved. ', doc)
+        res.send(doc) //let the user know the id and anything that were not defined by the user
+    }, (err) => {
+        console.log('Error while trying to save user. ', err)
+        res.status(400).send(err)
+    })
+
+})
+
+
 app.listen(port, () => {
     console.log(`Started up at port ${port}`)
 })
