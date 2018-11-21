@@ -115,10 +115,14 @@ app.post('/users', (req,res) => {
 
     var user = new User(body)
 
-    user.save().then((doc) => {
-        console.log('user sucessfully saved. ', doc)
-        res.send(doc) //let the user know the id and anything that were not defined by the user
-    }, (err) => {
+    user.save().then(() => {
+        return user.generateAuthToken()
+    })
+    .then((token) => {
+        //x- <-- creates a custom header
+        res.header('x-auth', token).send(user)
+    })
+    .catch((err) => {
         console.log('Error while trying to save user. ', err)
         res.status(400).send(err)
     })
