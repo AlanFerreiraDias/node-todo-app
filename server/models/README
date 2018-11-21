@@ -1,0 +1,34 @@
+ADAPTER - PADRONIZAR ENTRADA DE DADOS E SAIDA DOS DADOS (mesmo que o retorno do pagaarme seja diferente do moip, ele abstrai)
+     --Garante que o código não muda
+
+Provider -
+
+helpers - funcao compartilhada por mais de um service
+
+migrations - garantem que a estrutura do banco está como definido (tem tracking de todos os schema)
+    Sequelize - cria os migrations e os models correspondentes
+
+Models - mantem a consistencia do dado nível de aplicação (tem os updates, inserts...)
+    --Não entra lógica de negócios
+
+tasks
+    --RabbitMQ
+
+validators (lib jjv -> implementa json schema) - 
+    --estudar json schema (valida parametros recebidos api)
+
+Scripts
+    ---mete os schells aqui
+
+Services
+    --representaão de um serviço da empresa (user sign up, etc)
+
+---Vagrant --> criar ambiente para clonar e já ficar com o ambiente pronto
+
+--Dados externos -> snake case, --Dados internos --> Camel case
+
+Serializer 
+    --formatar resposta (do service) para ficar como o Endpoint espera 
+
+Endpoint
+    --
