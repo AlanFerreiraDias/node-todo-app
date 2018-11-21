@@ -7,6 +7,7 @@ const {mongoose} = require('./db/mongoose.js')
 const {Todo} = require('./models/todo.js')
 const {User} = require('./models/user.js')
 const {Project} = require('./models/projects.js')
+const {authenticate} = require('./middleware/authenticate')
 
 var app = express()
 
@@ -129,6 +130,9 @@ app.post('/users', (req,res) => {
 
 })
 
+app.get('/users/me', authenticate, (req, res) => {
+    res.send(req.user)
+})
 
 app.listen(port, () => {
     console.log(`Started up at port ${port}`)
